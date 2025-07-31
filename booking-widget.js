@@ -177,29 +177,141 @@ document.addEventListener("DOMContentLoaded", function () {
     <button id="close-booking-widget" style="border-radius: 0 0 12px 12px; border: none; background: #dc3545; color: white; padding: 10px; cursor:pointer;">Close</button>
   `;
 
+//   document.body.appendChild(widget);
+
+//   // Toggle Button (icon always visible, text shows on hover)
+//   const toggleBtn = document.createElement("button");
+//   toggleBtn.id = "toggle-booking-widget";
+//   toggleBtn.style.position = "fixed";
+//   toggleBtn.style.top = "50%";
+//   toggleBtn.style[position] = "20px";
+//   toggleBtn.style.transform = "translateY(-50%)";
+//   toggleBtn.style.zIndex = "100000";
+//   toggleBtn.style.height = "48px";
+//   toggleBtn.style.display = "flex";
+//   toggleBtn.style.alignItems = "center";
+//   toggleBtn.style.justifyContent = "flex-start";
+//   toggleBtn.style.backgroundColor = "#007bff";
+//   toggleBtn.style.border = "none";
+//   toggleBtn.style.borderRadius = "24px";
+//   toggleBtn.style.color = "#fff";
+//   toggleBtn.style.cursor = "pointer";
+//   toggleBtn.style.padding = "0 12px";
+//   toggleBtn.style.overflow = "hidden";
+//   toggleBtn.style.transition = "width 0.3s ease";
+//   toggleBtn.style.width = "48px";
+
+//   // Icon (always visible)
+//   const icon = document.createElement("i");
+//   icon.className = "fas fa-user-edit";
+//   icon.style.fontSize = "18px";
+//   toggleBtn.appendChild(icon);
+
+//   // Text (reveals on hover)
+//   const textSpan = document.createElement("span");
+//   textSpan.textContent = `  ${title}`;
+//   textSpan.style.whiteSpace = "nowrap";
+//   textSpan.style.marginLeft = "8px";
+//   textSpan.style.opacity = "0";
+//   textSpan.style.transition = "opacity 0.3s ease";
+//   toggleBtn.appendChild(textSpan);
+
+//   // Hover logic
+//   toggleBtn.addEventListener("mouseenter", () => {
+//     toggleBtn.style.width = "220px";
+//     textSpan.style.opacity = "1";
+//   });
+
+//   toggleBtn.addEventListener("mouseleave", () => {
+//     toggleBtn.style.width = "48px";
+//     textSpan.style.opacity = "0";
+//   });
+
+//   // Click to open booking form
+//   toggleBtn.addEventListener("click", () => {
+//     widget.style.display = "flex";
+//     toggleBtn.style.display = "none";
+//   });
+
+//   // Close booking form
+//   widget.querySelector("#close-booking-widget").addEventListener("click", () => {
+//     widget.style.display = "none";
+//     toggleBtn.style.display = "flex";
+//   });
+
+//   document.body.appendChild(toggleBtn);
+
+//   // Form submission
+//   document.getElementById("booking-form").addEventListener("submit", function (e) {
+//     e.preventDefault();
+
+//     const formData = new FormData(this);
+//     const data = {
+//       name: formData.get("name"),
+//       user_email: formData.get("user_email"),
+//       phone: formData.get("phone"),
+//       datetime: formData.get("datetime"),
+//       recipient_email: formData.get("recipient_email")
+//     };
+
+//     console.log("📩 Booking Submitted:", data);
+
+//     document.getElementById("booking-message").textContent = "Booking submitted! We'll contact you shortly.";
+//     this.reset();
+//   });
+// });
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const scriptTag = document.getElementById("booking-widget-script");
+  if (!scriptTag) return;
+
+  const position = scriptTag.getAttribute("data-position") || "right";
+  const title = scriptTag.getAttribute("data-title") || "Book Now";
+  const recipientEmail = scriptTag.getAttribute("data-email") || "";
+
+  // Widget
+  const widget = document.createElement("div");
+  widget.id = "booking-widget";
+  widget.className = "position-fixed bg-white border rounded shadow d-flex flex-column";
+  widget.style.width = "320px";
+  widget.style.top = "50%";
+  widget.style[position] = "20px";
+  widget.style.transform = "translateY(-50%)";
+  widget.style.zIndex = "1055";
+  widget.style.display = "none";
+
+  widget.innerHTML = `
+    <div class="p-3">
+      <h5 class="mb-3">${title}</h5>
+      <form id="booking-form">
+        <input type="text" name="name" placeholder="Your Name" required class="form-control mb-2" />
+        <input type="email" name="user_email" placeholder="Your Email" required class="form-control mb-2" />
+        <input type="tel" name="phone" placeholder="Mobile Number" required pattern="\\+?[0-9\\s-]+" class="form-control mb-2" />
+        <input type="datetime-local" name="datetime" required class="form-control mb-2" />
+        <input type="hidden" name="recipient_email" value="${recipientEmail}" />
+        <button type="submit" class="btn btn-primary w-100">Book Now</button>
+      </form>
+      <p id="booking-message" class="mt-2 text-success small"></p>
+    </div>
+    <button id="close-booking-widget" class="btn btn-danger rounded-0">Close</button>
+  `;
+
   document.body.appendChild(widget);
 
-  // Toggle Button (icon always visible, text shows on hover)
+  // Toggle button
   const toggleBtn = document.createElement("button");
   toggleBtn.id = "toggle-booking-widget";
-  toggleBtn.style.position = "fixed";
+  toggleBtn.className = "btn btn-primary d-flex align-items-center position-fixed";
   toggleBtn.style.top = "50%";
   toggleBtn.style[position] = "20px";
   toggleBtn.style.transform = "translateY(-50%)";
-  toggleBtn.style.zIndex = "100000";
+  toggleBtn.style.zIndex = "1060";
   toggleBtn.style.height = "48px";
-  toggleBtn.style.display = "flex";
-  toggleBtn.style.alignItems = "center";
-  toggleBtn.style.justifyContent = "flex-start";
-  toggleBtn.style.backgroundColor = "#007bff";
-  toggleBtn.style.border = "none";
-  toggleBtn.style.borderRadius = "24px";
-  toggleBtn.style.color = "#fff";
-  toggleBtn.style.cursor = "pointer";
-  toggleBtn.style.padding = "0 12px";
   toggleBtn.style.overflow = "hidden";
-  toggleBtn.style.transition = "width 0.3s ease";
+  toggleBtn.style.padding = "0 12px";
   toggleBtn.style.width = "48px";
+  toggleBtn.style.transition = "width 0.3s ease";
 
   // Icon (always visible)
   const icon = document.createElement("i");
@@ -207,18 +319,18 @@ document.addEventListener("DOMContentLoaded", function () {
   icon.style.fontSize = "18px";
   toggleBtn.appendChild(icon);
 
-  // Text (reveals on hover)
+  // Text (only visible on hover)
   const textSpan = document.createElement("span");
   textSpan.textContent = `  ${title}`;
+  textSpan.className = "ms-2";
   textSpan.style.whiteSpace = "nowrap";
-  textSpan.style.marginLeft = "8px";
   textSpan.style.opacity = "0";
   textSpan.style.transition = "opacity 0.3s ease";
   toggleBtn.appendChild(textSpan);
 
-  // Hover logic
+  // Expand on hover
   toggleBtn.addEventListener("mouseenter", () => {
-    toggleBtn.style.width = "220px";
+    toggleBtn.style.width = "180px";
     textSpan.style.opacity = "1";
   });
 
@@ -227,21 +339,19 @@ document.addEventListener("DOMContentLoaded", function () {
     textSpan.style.opacity = "0";
   });
 
-  // Click to open booking form
   toggleBtn.addEventListener("click", () => {
     widget.style.display = "flex";
     toggleBtn.style.display = "none";
   });
 
-  // Close booking form
+  document.body.appendChild(toggleBtn);
+
   widget.querySelector("#close-booking-widget").addEventListener("click", () => {
     widget.style.display = "none";
     toggleBtn.style.display = "flex";
   });
 
-  document.body.appendChild(toggleBtn);
-
-  // Form submission
+  // Form submit
   document.getElementById("booking-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
