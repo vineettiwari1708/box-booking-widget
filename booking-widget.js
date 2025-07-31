@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add icon to button (calendar icon)
   const icon = document.createElement("span");
-  icon.className = "fas fa-calendar-alt";
+  icon.className = "fas fa-user-edit";
   icon.style.fontSize = "18px";
   icon.style.marginRight = "0";
   icon.style.color = "white";
