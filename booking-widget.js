@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Hover logic
   toggleBtn.addEventListener("mouseenter", () => {
-    toggleBtn.style.width = "240px";
+    toggleBtn.style.width = "220px";
     textSpan.style.opacity = "1";
   });
 
