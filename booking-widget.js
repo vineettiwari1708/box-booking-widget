@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Booking Widget (hidden by default)
   const widget = document.createElement("div");
   widget.id = "booking-widget";
-  widget.style.width = "320px";
+  widget.style.width = "400px";
   widget.style.position = "fixed";
   widget.style.top = "50%";
   widget.style[position] = "20px";
