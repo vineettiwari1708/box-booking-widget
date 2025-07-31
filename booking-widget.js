@@ -136,46 +136,46 @@
 // });
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const scriptTag = document.getElementById("booking-widget-script");
-  if (!scriptTag) return;
+// document.addEventListener("DOMContentLoaded", function () {
+//   const scriptTag = document.getElementById("booking-widget-script");
+//   if (!scriptTag) return;
 
-  const position = scriptTag.getAttribute("data-position") || "right";
-  const title = scriptTag.getAttribute("data-title") || "Book Now";
-  const recipientEmail = scriptTag.getAttribute("data-email") || "";
+//   const position = scriptTag.getAttribute("data-position") || "right";
+//   const title = scriptTag.getAttribute("data-title") || "Book Now";
+//   const recipientEmail = scriptTag.getAttribute("data-email") || "";
 
-  // Booking Widget (hidden by default)
-  const widget = document.createElement("div");
-  widget.id = "booking-widget";
-  widget.style.width = "320px";
-  widget.style.position = "fixed";
-  widget.style.top = "50%";
-  widget.style[position] = "20px";
-  widget.style.transform = "translateY(-50%)";
-  widget.style.backgroundColor = "#fff";
-  widget.style.border = "1px solid #ccc";
-  widget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.2)";
-  widget.style.zIndex = "99999";
-  widget.style.borderRadius = "12px";
-  widget.style.overflow = "hidden";
-  widget.style.display = "none";
-  widget.style.flexDirection = "column";
+//   // Booking Widget (hidden by default)
+//   const widget = document.createElement("div");
+//   widget.id = "booking-widget";
+//   widget.style.width = "320px";
+//   widget.style.position = "fixed";
+//   widget.style.top = "50%";
+//   widget.style[position] = "20px";
+//   widget.style.transform = "translateY(-50%)";
+//   widget.style.backgroundColor = "#fff";
+//   widget.style.border = "1px solid #ccc";
+//   widget.style.boxShadow = "0 6px 20px rgba(0, 0, 0, 0.2)";
+//   widget.style.zIndex = "99999";
+//   widget.style.borderRadius = "12px";
+//   widget.style.overflow = "hidden";
+//   widget.style.display = "none";
+//   widget.style.flexDirection = "column";
 
-  widget.innerHTML = `
-    <div style="padding: 16px;">
-      <h3 style="margin-top: 0;">${title}</h3>
-      <form id="booking-form">
-        <input type="text" name="name" placeholder="Your Name" required style="width:100%; margin-bottom: 10px;" />
-        <input type="email" name="user_email" placeholder="Your Email" required style="width:100%; margin-bottom: 10px;" />
-        <input type="tel" name="phone" placeholder="Mobile Number" required pattern="\\+?[0-9\\s-]+" style="width:100%; margin-bottom: 10px;" />
-        <input type="datetime-local" name="datetime" required style="width:100%; margin-bottom: 10px;" />
-        <input type="hidden" name="recipient_email" value="${recipientEmail}" />
-        <button type="submit" style="width:100%; padding:10px; background:#007bff; color:#fff; border:none; border-radius: 5px;">Book Now</button>
-      </form>
-      <p id="booking-message" style="margin-top:10px; font-size: 14px; color: green;"></p>
-    </div>
-    <button id="close-booking-widget" style="border-radius: 0 0 12px 12px; border: none; background: #dc3545; color: white; padding: 10px; cursor:pointer;">Close</button>
-  `;
+//   widget.innerHTML = `
+//     <div style="padding: 16px;">
+//       <h3 style="margin-top: 0;">${title}</h3>
+//       <form id="booking-form">
+//         <input type="text" name="name" placeholder="Your Name" required style="width:100%; margin-bottom: 10px;" />
+//         <input type="email" name="user_email" placeholder="Your Email" required style="width:100%; margin-bottom: 10px;" />
+//         <input type="tel" name="phone" placeholder="Mobile Number" required pattern="\\+?[0-9\\s-]+" style="width:100%; margin-bottom: 10px;" />
+//         <input type="datetime-local" name="datetime" required style="width:100%; margin-bottom: 10px;" />
+//         <input type="hidden" name="recipient_email" value="${recipientEmail}" />
+//         <button type="submit" style="width:100%; padding:10px; background:#007bff; color:#fff; border:none; border-radius: 5px;">Book Now</button>
+//       </form>
+//       <p id="booking-message" style="margin-top:10px; font-size: 14px; color: green;"></p>
+//     </div>
+//     <button id="close-booking-widget" style="border-radius: 0 0 12px 12px; border: none; background: #dc3545; color: white; padding: 10px; cursor:pointer;">Close</button>
+//   `;
 
 //   document.body.appendChild(widget);
 
