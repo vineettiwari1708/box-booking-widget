@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const title = scriptTag.getAttribute("data-title") || "Book Now";
   const recipientEmail = scriptTag.getAttribute("data-email") || "";
 
-  // Create the booking widget (hidden initially)
+  // Booking Widget (hidden by default)
   const widget = document.createElement("div");
   widget.id = "booking-widget";
   widget.style.width = "320px";
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
   widget.style.zIndex = "99999";
   widget.style.borderRadius = "12px";
   widget.style.overflow = "hidden";
-  widget.style.display = "none"; // Hidden initially
+  widget.style.display = "none";
   widget.style.flexDirection = "column";
 
   widget.innerHTML = `
@@ -179,75 +179,69 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.body.appendChild(widget);
 
-  // Create the toggle button visible always
+  // Toggle Button (icon always visible, text shows on hover)
   const toggleBtn = document.createElement("button");
   toggleBtn.id = "toggle-booking-widget";
   toggleBtn.style.position = "fixed";
   toggleBtn.style.top = "50%";
   toggleBtn.style[position] = "20px";
   toggleBtn.style.transform = "translateY(-50%)";
-
   toggleBtn.style.zIndex = "100000";
+  toggleBtn.style.height = "48px";
   toggleBtn.style.display = "flex";
   toggleBtn.style.alignItems = "center";
-  toggleBtn.style.justifyContent = "center";
-
-  // Button styles for collapsed state
-  toggleBtn.style.width = "40px";
-  toggleBtn.style.height = "40px";
-  toggleBtn.style.borderRadius = "20px";
+  toggleBtn.style.justifyContent = "flex-start";
   toggleBtn.style.backgroundColor = "#007bff";
   toggleBtn.style.border = "none";
+  toggleBtn.style.borderRadius = "24px";
   toggleBtn.style.color = "#fff";
   toggleBtn.style.cursor = "pointer";
-  toggleBtn.style.fontWeight = "600";
-  toggleBtn.style.fontSize = "14px";
-  toggleBtn.style.transition = "width 0.3s ease, padding 0.3s ease";
+  toggleBtn.style.padding = "0 12px";
+  toggleBtn.style.overflow = "hidden";
+  toggleBtn.style.transition = "width 0.3s ease";
+  toggleBtn.style.width = "48px";
 
-  // Create icon element (using FontAwesome user-edit)
+  // Icon (always visible)
   const icon = document.createElement("i");
   icon.className = "fas fa-user-edit";
   icon.style.fontSize = "18px";
-  icon.style.marginRight = "0";
   toggleBtn.appendChild(icon);
 
-  // Create text node but hidden initially
+  // Text (reveals on hover)
   const textSpan = document.createElement("span");
-  textSpan.textContent = title;
-  textSpan.style.marginLeft = "8px";
+  textSpan.textContent = `  ${title}`;
   textSpan.style.whiteSpace = "nowrap";
+  textSpan.style.marginLeft = "8px";
   textSpan.style.opacity = "0";
   textSpan.style.transition = "opacity 0.3s ease";
   toggleBtn.appendChild(textSpan);
 
-  // On hover: expand button, show text
+  // Hover logic
   toggleBtn.addEventListener("mouseenter", () => {
-    toggleBtn.style.width = "160px";
+    toggleBtn.style.width = "180px";
     textSpan.style.opacity = "1";
-    icon.style.marginRight = "8px";
   });
 
   toggleBtn.addEventListener("mouseleave", () => {
-    toggleBtn.style.width = "40px";
+    toggleBtn.style.width = "48px";
     textSpan.style.opacity = "0";
-    icon.style.marginRight = "0";
   });
 
-  document.body.appendChild(toggleBtn);
-
-  // Open widget on button click
+  // Click to open booking form
   toggleBtn.addEventListener("click", () => {
     widget.style.display = "flex";
     toggleBtn.style.display = "none";
   });
 
-  // Close widget on close button click
+  // Close booking form
   widget.querySelector("#close-booking-widget").addEventListener("click", () => {
     widget.style.display = "none";
     toggleBtn.style.display = "flex";
   });
 
-  // Handle form submit (same as before)
+  document.body.appendChild(toggleBtn);
+
+  // Form submission
   document.getElementById("booking-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -260,16 +254,11 @@ document.addEventListener("DOMContentLoaded", function () {
       recipient_email: formData.get("recipient_email")
     };
 
-    console.log("📩 Booking Submitted:");
-    console.log("To:", data.recipient_email);
-    console.log("From:", data.user_email);
-    console.log("Name:", data.name);
-    console.log("Phone:", data.phone);
-    console.log("Date/Time:", data.datetime);
+    console.log("📩 Booking Submitted:", data);
 
-    const msg = document.getElementById("booking-message");
-    msg.textContent = "Booking submitted! We'll contact you shortly.";
+    document.getElementById("booking-message").textContent = "Booking submitted! We'll contact you shortly.";
     this.reset();
   });
 });
+
 
