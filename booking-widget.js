@@ -1,13 +1,4 @@
-<!-- Booking Widget Script Tag -->
-<script
-  id="booking-widget-script"
-  data-title="Book an Appointment"
-  data-position="right"
-  data-email="recipient@email.com"
-  src="">
-</script>
 
-<script>
 document.addEventListener("DOMContentLoaded", function () {
   const scriptTag = document.getElementById("booking-widget-script");
   if (!scriptTag) return;
@@ -123,4 +114,3 @@ document.addEventListener("DOMContentLoaded", function () {
     // TODO: Send 'data' to an API, EmailJS, or your backend
   });
 });
-</script>
